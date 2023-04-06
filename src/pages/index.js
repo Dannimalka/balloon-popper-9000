@@ -14,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <BalloonContainer totalBaloon={3} />
+        <BalloonContainer totalBaloon={10} />
       </main>
     </>
   );
