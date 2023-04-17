@@ -1,9 +1,10 @@
 #balloon-container {
   height: 100vh;
   width: 100vw;
+
   /*left: 50%;*/
   /* transform: translate(-50%);*/
-  padding: 1em;
+  /*padding: 1em;*/
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -15,10 +16,17 @@
 .balloon {
   height: 125px;
   width: 105px;
-  z-index: 100;
-  border-radius: 75% 75% 70% 70%;
+  visibility: hidden;
+  border-radius: 85% 85% 85% 85%;
   position: relative;
   cursor: pointer;
+}
+.balloon:hover {
+  cursor: url(../../public/pin.svg), auto;
+}
+
+.balloon:active {
+  cursor: url(../../public/pinclick.svg), auto;
 }
 
 .balloon:before {
@@ -47,6 +55,43 @@
   margin: auto;
 }
 
+.text {
+  color: white;
+  position: fixed;
+  top: 10%;
+}
+.balloon .clicked {
+  background-color: red;
+  color: blue;
+  transform: scale(2);
+}
+.counter {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  color: yellow;
+  font-size: 50px;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+}
+.score {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  color: white;
+  font-size: 30px;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+}
+
+.new_game {
+  transition: 0.3s;
+}
+.new_game:hover {
+  color: red;
+  transition: 0.3s;
+}
+
 @-webkit-keyframes float {
   from {
     transform: translateY(100vh);
@@ -62,11 +107,13 @@
   0% {
     transform: translateY(100vh);
     opacity: 1;
+    visibility: inherit;
   }
 
   100% {
     transform: translateY(-300vh);
     opacity: 1;
+    visibility: inherit;
   }
 }
 

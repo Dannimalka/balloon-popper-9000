@@ -1,7 +1,65 @@
 import Head from "next/head";
 import BalloonContainer from "@components/FloatingBalloons";
+import Bombs from "@/components/Bombs";
+import { useEffect, useState } from "react";
+import Rocket from "@/components/Rocket";
+
+const INITIAL_STATE = {
+  totalBalloons: 10,
+  clickedCount: 0,
+  showLevel: false,
+  showGame: false,
+  level: 1,
+  count: 5,
+};
 
 export default function Home() {
+  const [totalBalloons, setTotalBalloons] = useState(
+    INITIAL_STATE.totalBalloons
+  );
+  const [clickedCount, setClickedCount] = useState(INITIAL_STATE.clickedCount);
+  const [showLevel, setShowLevel] = useState(INITIAL_STATE.showLevel);
+  const [showGame, setShowGame] = useState(INITIAL_STATE.showGame);
+  const [level, setLevel] = useState(INITIAL_STATE.level);
+  const [count, setCount] = useState(INITIAL_STATE.count);
+
+  useEffect(() => {
+    const levelRequirement = 5 * Math.pow(2, level - 1);
+    if (clickedCount >= levelRequirement) {
+      setShowLevel(true);
+      setLevel((prevLevel) => prevLevel + 1);
+      setTimeout(() => {
+        setTotalBalloons((prevTotal) => prevTotal * 2);
+      }, 4000);
+
+      setTimeout(() => {
+        setShowLevel(false);
+      }, 5000);
+    }
+  }, [clickedCount, level, showLevel]);
+
+  useEffect(() => {
+    let intervalId;
+
+    if (showLevel) {
+      setCount(INITIAL_STATE.count);
+      intervalId = setInterval(() => {
+        setCount((count) => count - 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [showLevel]);
+
+  const resetGame = () => {
+    setTotalBalloons(INITIAL_STATE.totalBalloons);
+    setClickedCount(INITIAL_STATE.clickedCount);
+    setShowLevel(INITIAL_STATE.showLevel);
+    setShowGame(INITIAL_STATE.showGame);
+    setLevel(INITIAL_STATE.level);
+    setCount(INITIAL_STATE.count);
+  };
+
   return (
     <>
       <Head>
@@ -14,7 +72,34 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <BalloonContainer totalBaloon={10} />
+        {level < 1 && <Rocket setShowGame={setShowGame} />}
+        {level < 2 && <Rocket setShowGame={setShowGame} />}
+        <Bombs setShowGame={setShowGame} />
+
+        <BalloonContainer
+          setTotalBalloons={setTotalBalloons}
+          totalBalloons={totalBalloons}
+          clickedCount={clickedCount}
+          setClickedCount={setClickedCount}
+          level={level}
+        />
+        <div
+          className="Level_container"
+          style={{ display: showLevel ? "block" : "none" }}
+        >
+          <h1 className="text">Level {level}</h1>
+          <h2 className="counter">{count}</h2>
+        </div>
+        <div
+          className="Level_container"
+          style={{ display: showGame ? "block" : "none" }}
+        >
+          <h1 className="text">Game Over</h1>
+          <p className="score">Your Score: {clickedCount}</p>
+          <p className="counter new_game" onClick={resetGame}>
+            New Game
+          </p>
+        </div>
       </main>
     </>
   );

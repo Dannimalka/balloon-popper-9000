@@ -12,8 +12,6 @@ function getRandomStyles() {
   let mt = random(200);
   let ml = random(20);
   let dur = random(8) + 8;
-  let halfChance = 1;
-  let delay = random(4);
 
   return {
     backgroundColor: `rgba(${r},${g},${b},1)`,
@@ -25,12 +23,12 @@ function getRandomStyles() {
 }
 
 function BalloonContainer(props) {
-  const { totalBaloon = 10 } = props;
+  const { totalBalloons = 10, clickedCount, setClickedCount, level } = props;
   const [balloons, setBalloons] = useState([]);
 
   useEffect(() => {
-    createBalloons(totalBaloon);
-  }, []);
+    createBalloons(totalBalloons);
+  }, [totalBalloons]);
 
   function getRandomFuckingNumber() {
     return random(250);
@@ -64,7 +62,7 @@ function BalloonContainer(props) {
           <div
             className="balloon"
             style={getRandomStyles()}
-            onClick={() =>
+            onClick={() => {
               setBalloons((prevBalloons) =>
                 prevBalloons.map((balloon) => {
                   if (balloon.key === balloonKey) {
@@ -79,8 +77,9 @@ function BalloonContainer(props) {
                     return balloon;
                   }
                 })
-              )
-            }
+              );
+              setClickedCount((prevCount) => prevCount + 1);
+            }}
           />
         </m.div>
       );
@@ -99,7 +98,14 @@ function BalloonContainer(props) {
     return key;
   }
 
-  return <div id="balloon-container">{balloons}</div>;
+  return (
+    <div>
+      <div id="balloon-container">{balloons}</div>
+      <p className="text">
+        Score: {clickedCount} Level: {level}
+      </p>
+    </div>
+  );
 }
 
 export default BalloonContainer;
