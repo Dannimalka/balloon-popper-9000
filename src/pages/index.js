@@ -72,8 +72,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {level < 1 && <Rocket setShowGame={setShowGame} />}
-        {level < 2 && <Rocket setShowGame={setShowGame} />}
+        {level === 2 && <Rocket setShowGame={setShowGame} />}
+        {level === 3 && (
+          <div>
+            <Rocket setShowGame={setShowGame} />
+            <Rocket setShowGame={setShowGame} />
+          </div>
+        )}
+        {level > 3 && (
+          <div>
+            <Rocket setShowGame={setShowGame} />
+            <Rocket setShowGame={setShowGame} />
+            <Rocket setShowGame={setShowGame} />
+          </div>
+        )}
+
         <Bombs setShowGame={setShowGame} />
 
         <BalloonContainer

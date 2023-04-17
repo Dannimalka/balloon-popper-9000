@@ -60,12 +60,12 @@ a {
   position: fixed;
   width: 200px;
   height: auto;
-  bottom: -40vh;
+  bottom: -70vh;
   left: 50%;
   transform: translate(-50%);
   z-index: 45;
   animation: lift 10s linear infinite;
-  animation-delay: 8s;
+  animation-delay: 6s;
 }
 /*
 .rocket_container {
@@ -96,6 +96,6 @@ a {
     transform: translateY(0vh);
   }
   to {
-    transform: translateY(-140vh);
+    transform: translateY(-170vh);
   }
 }
