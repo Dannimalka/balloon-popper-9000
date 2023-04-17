@@ -7,6 +7,9 @@
   margin: 0;
   cursor: url(../../public/pin.svg), auto;
 }
+*:active {
+  cursor: url(../../public/pinclick.svg), auto;
+}
 
 html,
 body {
@@ -66,6 +69,23 @@ a {
   z-index: 45;
   animation: lift 10s linear infinite;
   animation-delay: 6s;
+}
+.fullscreen {
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+  font-size: 40px;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.707);
+  z-index: 60;
+}
+.fullscreen:hover {
+  color: yellow;
+  background-color: rgba(128, 128, 128, 0.127);
 }
 /*
 .rocket_container {

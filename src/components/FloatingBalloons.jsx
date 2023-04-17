@@ -25,6 +25,7 @@ function getRandomStyles() {
 function BalloonContainer(props) {
   const { totalBalloons = 10, clickedCount, setClickedCount, level } = props;
   const [balloons, setBalloons] = useState([]);
+  const [animateScore, setAnimateScore] = useState(false);
 
   useEffect(() => {
     createBalloons(totalBalloons);
@@ -33,6 +34,13 @@ function BalloonContainer(props) {
   function getRandomFuckingNumber() {
     return random(250);
   }
+  useEffect(() => {
+    setAnimateScore(true);
+    const timeoutId = setTimeout(() => {
+      setAnimateScore(false);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [clickedCount]);
 
   function createBalloons(num) {
     let newBalloons = [];
@@ -101,9 +109,13 @@ function BalloonContainer(props) {
   return (
     <div>
       <div id="balloon-container">{balloons}</div>
-      <p className="text">
-        Score: {clickedCount} Level: {level}
-      </p>
+      <m.p
+        className="score_text"
+        animate={animateScore ? { scale: [1, 1.5, 1] } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        Score: {clickedCount}
+      </m.p>
     </div>
   );
 }

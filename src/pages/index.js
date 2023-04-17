@@ -3,6 +3,7 @@ import BalloonContainer from "@components/FloatingBalloons";
 import Bombs from "@/components/Bombs";
 import { useEffect, useState } from "react";
 import Rocket from "@/components/Rocket";
+import { BsFullscreen, BsFullscreenExit } from "react-icons/bs";
 
 const INITIAL_STATE = {
   totalBalloons: 10,
@@ -22,6 +23,39 @@ export default function Home() {
   const [showGame, setShowGame] = useState(INITIAL_STATE.showGame);
   const [level, setLevel] = useState(INITIAL_STATE.level);
   const [count, setCount] = useState(INITIAL_STATE.count);
+  const [currentWindowSize, setcurrentWindowSize] = useState(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const handleToggleFullScreen = (event) => {
+    if (!isFullScreen) {
+      event.view.document.body.requestFullscreen();
+    } else {
+      event.view.document.exitFullscreen();
+    }
+    setIsFullScreen(!isFullScreen);
+  };
+  useEffect(() => {
+    setcurrentWindowSize(window.innerHeight);
+
+    const handleKeyDown = (event) => {
+      if (event.key === "F11") {
+        event.preventDefault();
+        handleToggleFullScreen(event);
+      }
+    };
+
+    const handleFullScreenExit = () => {
+      if (currentWindowSize >= window.innerHeight)
+        setIsFullScreen(false), setcurrentWindowSize(window.innerHeight);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleFullScreenExit);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleFullScreenExit);
+    };
+  }, [currentWindowSize]);
 
   useEffect(() => {
     const levelRequirement = 5 * Math.pow(2, level - 1);
@@ -112,6 +146,9 @@ export default function Home() {
           <p className="counter new_game" onClick={resetGame}>
             New Game
           </p>
+        </div>
+        <div onClick={handleToggleFullScreen} className="fullscreen">
+          {isFullScreen ? <BsFullscreenExit /> : <BsFullscreen />}
         </div>
       </main>
     </>

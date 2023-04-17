@@ -55,10 +55,16 @@
   margin: auto;
 }
 
-.text {
+.score_text {
   color: white;
   position: fixed;
-  top: 10%;
+  top: 5%;
+  left: 2%;
+  font-size: 20px;
+}
+
+.text {
+  position: fixed;
 }
 .balloon .clicked {
   background-color: red;
