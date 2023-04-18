@@ -1,8 +1,8 @@
 import React from "react";
-import Frontpage from "./Frontpage";
+import Gamepage from "@/components/GamePage";
 
 const index = () => {
-  return <Frontpage />;
+  return <Gamepage />;
 };
 
 export default index;

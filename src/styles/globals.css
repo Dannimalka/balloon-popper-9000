@@ -1,5 +1,5 @@
 @import url("./floatingBalloons.css");
-@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap");
 
 * {
   box-sizing: border-box;
@@ -14,8 +14,8 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
-  font-family: "Share Tech Mono", monospace;
+  overflow: hidden;
+  font-family: "VT323", monospace;
 }
 
 body {
@@ -95,6 +95,21 @@ a {
 
 }
 */
+
+.invisible {
+  visibility: hidden;
+}
+
+.explosion {
+  position: fixed;
+  width: 90%;
+  height: 90%;
+  top: 10%;
+  left: 10%;
+
+  animation: explosion 1s linear forwards;
+  z-index: 60;
+}
 @keyframes spin {
   from {
     transform: rotate(0);
@@ -112,10 +127,28 @@ a {
   }
 }
 @keyframes lift {
+  0% {
+    transform: translateY(0vh) rotate(5deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: translateY(-170vh) rotate(5deg);
+  }
+}
+
+@keyframes explosion {
   from {
-    transform: translateY(0vh);
+    transform: scale(0) rotate(0deg);
   }
   to {
-    transform: translateY(-170vh);
+    transform: scale(1) rotate(360deg);
   }
 }

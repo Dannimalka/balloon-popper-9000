@@ -2,10 +2,13 @@ import React, { useState } from "react";
 
 const Bomb = () => {
   const [animationDelay, setAnimationDelay] = useState(
-    Math.floor(Math.random() * 10)
+    Math.floor(Math.random() * 15) + 5
   );
   const [animationDuration, setAnimationDuration] = useState(
-    Math.floor(Math.random() * 4) + 2
+    Math.floor(Math.random() * 3) + 2
+  );
+  const [translateX, setTranslateX] = useState(
+    Math.floor(Math.random() * 80) + 5
   );
 
   return (
@@ -14,6 +17,7 @@ const Bomb = () => {
       style={{
         animationDelay: `${animationDelay}s`,
         animationDuration: `${animationDuration}s`,
+        left: `${translateX}%`,
       }}
     >
       <svg id="svg8526" viewBox="0 0 214.4 221.65" version="1.1">

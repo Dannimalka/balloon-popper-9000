@@ -16,11 +16,11 @@
 .balloon {
   height: 125px;
   width: 105px;
-  visibility: hidden;
+  /*visibility: hidden;*/
   border-radius: 85% 85% 85% 85%;
   position: relative;
-  cursor: pointer;
 }
+/*
 .balloon:hover {
   cursor: url(../../public/pin.svg), auto;
 }
@@ -28,7 +28,7 @@
 .balloon:active {
   cursor: url(../../public/pinclick.svg), auto;
 }
-
+*/
 .balloon:before {
   content: "";
   height: 75px;
@@ -60,7 +60,7 @@
   position: fixed;
   top: 5%;
   left: 2%;
-  font-size: 20px;
+  font-size: 26px;
 }
 
 .text {
@@ -96,6 +96,13 @@
 .new_game:hover {
   color: red;
   transition: 0.3s;
+}
+
+.outerBalloon {
+  position: absolute;
+  width: 100px;
+  height: 120px;
+  /*border-radius: 85% 85% 85% 85%;*/
 }
 
 @-webkit-keyframes float {
