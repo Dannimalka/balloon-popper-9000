@@ -118,6 +118,7 @@ export default function Gamepage() {
           </div>
         )}
         {level > 4 && <Ufo setShowGame={setShowGame} />}
+        {level > 6 && <Ufo setShowGame={setShowGame} />}
         <Bombs setShowGame={setShowGame} />
 
         <BalloonContainer
