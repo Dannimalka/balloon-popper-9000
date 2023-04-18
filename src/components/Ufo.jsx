@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion as m } from "framer-motion";
 
 const Ufo = ({ setShowGame }) => {
-  const [startPoint, setStartPoint] = useState(
-    Math.floor(Math.random() * (70 - 5 + 1) + 5)
-  );
   const [speed, setSpeed] = useState(random(5) + 5);
   const [ml, setMl] = useState(random(2));
+
+  const startPointRef = useRef(Math.floor(Math.random() * (70 - 5 + 1) + 5));
 
   function random(num) {
     return Math.floor(Math.random() * num);
   }
+
   function getRandomFuckingNumber(startPoint) {
-    return startPoint + random(30);
+    return startPoint + random(40);
   }
 
   const [rocketDuration, setRocketDuration] = useState(
@@ -27,29 +27,24 @@ const Ufo = ({ setShowGame }) => {
 
   return (
     <div className="ufo_container">
-      <div
-        className="ufo"
-        onClick={() => handleBombClick()}
-        style={{
-          left: `${startPoint}`,
-          animationDuration: `${rocketDuration}s`,
-          width: `${rocketScale}%`,
-          position: "absolute",
-          zIndex: "40",
-        }}
-      >
+      <div className="ufo" onClick={() => handleBombClick()}>
         <m.img
-          style={{ zIndex: "60" }}
+          style={{
+            width: `${rocketScale}%`,
+            position: "absolute",
+            left: `${startPointRef.current}`,
+            zIndex: "40",
+          }}
           src="/ufo.svg"
           alt=""
           transition={{
             x: {
-              ease: "easeIn",
-              duration: 5,
+              ease: "linear",
+              duration: speed,
               repeat: "infinity",
             },
             y: {
-              ease: "easeIn",
+              ease: "linear",
               duration: speed,
               repeat: "infinity",
             },
@@ -57,14 +52,22 @@ const Ufo = ({ setShowGame }) => {
           }}
           animate={{
             x: [
-              `${startPoint}vw`,
-              `${getRandomFuckingNumber(startPoint)}vw`,
-              `${getRandomFuckingNumber(startPoint)}vw`,
-              `${getRandomFuckingNumber(startPoint)}vw`,
-              `${getRandomFuckingNumber(startPoint)}vw`,
-              `${startPoint}vw`,
+              `${startPointRef.current}vw`,
+              `${getRandomFuckingNumber(startPointRef.current)}vw`,
+              `${getRandomFuckingNumber(startPointRef.current)}vw`,
+              `${getRandomFuckingNumber(startPointRef.current)}vw`,
+              `${getRandomFuckingNumber(startPointRef.current)}vw`,
+              `${startPointRef.current}vw`,
             ],
-            y: ["90vh", "10vh", "90vh"],
+            y: [
+              `${startPointRef.current}vh`,
+              `${getRandomFuckingNumber(startPointRef.current)}vh`,
+              `${getRandomFuckingNumber(startPointRef.current)}vh`,
+              `${getRandomFuckingNumber(startPointRef.current)}vh`,
+              `${getRandomFuckingNumber(startPointRef.current)}vh`,
+              `${getRandomFuckingNumber(startPointRef.current)}vh`,
+              `${startPointRef.current}vh`,
+            ],
           }}
         />
       </div>

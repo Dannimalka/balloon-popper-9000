@@ -30,8 +30,15 @@ a {
 
 .Level_container {
   position: relative;
-
+  height: 100vh;
+  width: 100vw;
   display: flex;
+  background: black;
+}
+main {
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
 }
 .Level_container h1 {
   color: yellow;
@@ -87,14 +94,6 @@ a {
   color: yellow;
   background-color: rgba(128, 128, 128, 0.127);
 }
-/*
-.rocket_container {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-
-}
-*/
 
 .invisible {
   visibility: hidden;

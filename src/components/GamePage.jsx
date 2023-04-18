@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Rocket from "@/components/Rocket";
 import Ufo from "@/components/Ufo";
 import { BsFullscreen, BsFullscreenExit } from "react-icons/bs";
+import { motion as m } from "framer-motion";
 
 const INITIAL_STATE = {
   totalBalloons: 22,
@@ -12,7 +13,7 @@ const INITIAL_STATE = {
   showGame: false,
   level: 1,
   count: 5,
-  levelRequirement: 5,
+  levelRequirement: 1,
 };
 
 export default function Gamepage() {
@@ -68,7 +69,7 @@ export default function Gamepage() {
 
       setTotalBalloons((prevTotal) => prevTotal + level);
 
-      setLevelRequirement((prevTotal) => prevTotal + 15);
+      setLevelRequirement((prevTotal) => prevTotal + 2);
 
       setTimeout(() => {
         setShowLevel(false);
@@ -101,7 +102,28 @@ export default function Gamepage() {
 
   return (
     <>
-      <main>
+      <main
+        style={{
+          background:
+            level === 1
+              ? `url("/land2.svg") center center no-repeat fixed`
+              : level === 2
+              ? `url("/sky2.svg")`
+              : level === 3 || level === 4
+              ? `url("/stars2.svg") `
+              : `url("/space2.svg")`,
+
+          backgroundSize:
+            level === 1
+              ? `100%`
+              : level === 2
+              ? ``
+              : level === 3 || level === 4
+              ? `100%`
+              : `cover`,
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         {level === 2 && <Rocket setShowGame={setShowGame} />}
         {level === 3 && (
           <div>
@@ -128,13 +150,21 @@ export default function Gamepage() {
           setClickedCount={setClickedCount}
           level={level}
         />
-        <div
-          className="Level_container"
-          style={{ display: showLevel ? "block" : "none" }}
-        >
-          <h1 className="text">Level {level}</h1>
-          <h2 className="counter">{count}</h2>
-        </div>
+        {showLevel && (
+          <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 1, 1, 1, 1, 0] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 6 }}
+            className="Level_container"
+            style={{
+              /*display: showLevel ? "block" : "none"*/ zIndex: "5000",
+            }}
+          >
+            <h1 className="text">Level {level}</h1>
+            <h2 className="counter">{count}</h2>
+          </m.div>
+        )}
         <div
           className="Level_container"
           style={{ display: showGame ? "block" : "none" }}

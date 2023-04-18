@@ -70,24 +70,8 @@ function BalloonContainer(props) {
           onMouseLeave={(e) => (e.target.style.zIndex = "0")}
           onMouseEnter={(e) => (e.target.style.zIndex = "2")}
           onClick={(e) => {
-            console.log("e.target", e.target);
             e.target.className = "invisible";
-            //console.log("e", (e.target.children[0].className = "invisible"));
-            /*setBalloons((prevBalloons) =>
-              prevBalloons.map((balloon) => {
-                if (balloon.key === balloonKey) {
-                  return (
-                    <div
-                      key={balloon.key}
-                      className="balloon"
-                      style={{ ...balloon.props.style, visibility: "hidden" }}
-                    />
-                  );
-                } else {
-                  return balloon;
-                }
-              })
-            );*/
+
             setClickedCount((prevCount) => prevCount + 1);
           }}
           transition={{

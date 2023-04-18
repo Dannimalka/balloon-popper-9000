@@ -1,34 +1,20 @@
 #balloon-container {
   height: 100vh;
   width: 100vw;
-
-  /*left: 50%;*/
-  /* transform: translate(-50%);*/
-  /*padding: 1em;*/
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  /*transition: opacity 500ms;*/
-  /*position: fixed;*/
 }
 
 .balloon {
   height: 125px;
   width: 105px;
-  /*visibility: hidden;*/
+
   border-radius: 85% 85% 85% 85%;
   position: relative;
 }
-/*
-.balloon:hover {
-  cursor: url(../../public/pin.svg), auto;
-}
 
-.balloon:active {
-  cursor: url(../../public/pinclick.svg), auto;
-}
-*/
 .balloon:before {
   content: "";
   height: 75px;
@@ -102,7 +88,6 @@
   position: absolute;
   width: 100px;
   height: 120px;
-  /*border-radius: 85% 85% 85% 85%;*/
 }
 
 @-webkit-keyframes float {
