@@ -5,14 +5,23 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
     "lint": "next lint"
   },
   "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
     "framer-motion": "^10.11.2",
+    "mongoose": "^7.0.4",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

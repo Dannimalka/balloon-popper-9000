@@ -27,13 +27,19 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.game_over {
+}
 
 .Level_container {
-  position: relative;
+  position: fixed;
   height: 100vh;
   width: 100vw;
   display: flex;
   background: black;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
 }
 main {
   height: 100vh;
@@ -43,14 +49,12 @@ main {
 .Level_container h1 {
   color: yellow;
   display: flex;
-  width: 100vw;
+  /*width: 100vw;
   height: 100vh;
-  background-color: black;
-  top: 0;
-  justify-content: center;
-  align-items: center;
+  background-color: black;*/
+
   font-size: 120px;
-  z-index: 50;
+  z-index: 51;
 }
 
 .bomb_container {
